@@ -18,5 +18,6 @@
 | Módulo Relé           | Relé de 5V para ESP32, suporta carga de 12V      | 1          | Permite que o ESP32 controle a fechadura elétrica de forma segura |
 | Fechadura Elétrica    | Fechadura de 12V, ativada via relé               | 1          | Controlada pelo ESP32 através de um módulo relé para acionamento seguro |
 | Buzzer                | Buzzer piezoelétrico 5V                          | 1          | Emite alertas sonoros em resposta a eventos                    |
+| Sensor RFID           | Leitor RFID MFRC522, interface SPI               | 1          | Permite autenticação por tags RFID para controle de acesso     |
 
 
