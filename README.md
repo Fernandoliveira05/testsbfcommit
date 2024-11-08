@@ -2,6 +2,8 @@
 
 ## Materiais utilizados para a primeira versão de protótipo 
 
+&nbsp;&nbsp;&nbsp;&nbsp; Para a realização desse primeiro protótipo foram utilizados muitos
+
 | Material          | Especificação                              | Quantidade | Observações                                                    |
 |-------------------|--------------------------------------------|------------|-----------------------------------------------------------------|
 | ESP32            | Microcontrolador Wi-Fi e Bluetooth         | 1          | Controlador principal do sistema                               |
