@@ -96,7 +96,7 @@ void setup() {
 ```
 
 * Funções chamadas:
- ** inicializarLCD(): Inicializa o display LCD e exibe uma mensagem de inicialização.
- **inicializarSerial(): Configura a comunicação entre o ESP32 e o leitor biométrico.
- **configurarPinos(): Define os pinos dos LEDs, relé, e buzzer como saídas.
- **verificarLeitorBiometrico(): Verifica a conexão com o leitor biométrico e exibe o número de digitais registradas.
+  * inicializarLCD(): Inicializa o display LCD e exibe uma mensagem de inicialização.
+  *inicializarSerial(): Configura a comunicação entre o ESP32 e o leitor biométrico.
+  *configurarPinos(): Define os pinos dos LEDs, relé, e buzzer como saídas.
+  *verificarLeitorBiometrico(): Verifica a conexão com o leitor biométrico e exibe o número de digitais registradas.
