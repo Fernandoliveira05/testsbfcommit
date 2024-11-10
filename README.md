@@ -69,7 +69,7 @@ A alimentação dos dispositivos foi distribuída a partir das portas de energia
 
 O código-fonte do protótipo foi desenvolvido para gerenciar os sensores, atuadores e o fluxo de dados entre os componentes conectados ao ESP32. Ele inclui funções para autenticação biométrica, controle de LEDs e relé, e feedback sonoro através do buzzer.
 
-Para acessar o código completo e explorar sua implementação, [clique aqui para ver o arquivo completo.](src\protótipo\MUDAR)
+Para acessar o código completo e explorar sua implementação, [clique aqui para ver o arquivo completo.](src\protótipo\prototipo_v1.ino)
 
 #### 1. Inicialização dos Componentes
 Este bloco configura o ESP32 e os componentes conectados, como o LCD, leitor biométrico, LEDs, e buzzer. Essa etapa garante que todos os dispositivos estejam prontos para uso.
