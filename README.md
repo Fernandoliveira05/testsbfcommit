@@ -199,6 +199,10 @@ void gerenciarLedVermelho() {
     }
 }
 ```
+* Funções:
+  * acenderLedVerde() e acenderLedVermelho(): Acendem os LEDs verde e vermelho, respectivamente, e registram o tempo em que foram ativados.
+  * gerenciarLedVerde() e gerenciarLedVermelho(): Apagam os LEDs após o tempo especificado, voltando o sistema ao estado de espera.
+
 
  #### 5. Controle do Relé para Fechadura
 O relé controla o acionamento da fechadura elétrica e é ativado por um tempo específico após a verificação de uma digital válida.
