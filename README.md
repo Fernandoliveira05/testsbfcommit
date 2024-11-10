@@ -65,7 +65,7 @@ Para garantir o funcionamento adequado do protótipo, foi necessário realizar a
 
 A alimentação dos dispositivos foi distribuída a partir das portas de energia do ESP32 (GND e 5V), conectadas à protoboard para fornecer energia de forma organizada a todos os componentes do circuito.
 
-### Código para funcionamento do protótipo
+### Código Fonte do Protótipo
 
 O código-fonte do protótipo foi desenvolvido para gerenciar os sensores, atuadores e o fluxo de dados entre os componentes conectados ao ESP32. Ele inclui funções para autenticação biométrica, controle de LEDs e relé, e feedback sonoro através do buzzer.
 
