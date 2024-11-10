@@ -1,4 +1,4 @@
-A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
+&nbsp;&nbsp;&nbsp;&nbsp; A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
 
 ## Imagens do protótipo 
 
@@ -46,7 +46,6 @@ A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é um
 | Módulo Relé           | Relé de 5V para ESP32, suporta carga de 12V      | 1          | Permite que o ESP32 controle a fechadura elétrica de forma segura |
 | Fechadura Elétrica    | Fechadura de 12V, ativada via relé               | 1          | Controlada pelo ESP32 através de um módulo relé para acionamento seguro |
 | Buzzer                | Buzzer piezoelétrico 5V                          | 1          | Emite alertas sonoros em resposta a eventos                    |
-| Sensor RFID           | Leitor RFID MFRC522, interface SPI               | 1          | Permite autenticação por tags RFID para controle de acesso     |
 
 ## Conexões 
 
@@ -61,9 +60,6 @@ Para garantir o funcionamento adequado do protótipo, foi necessário realizar a
 | **LED Verde**        | GPIO 25         | Anodo (+)          | Indica acesso autorizado                              |
 | **LED Azul**         | GPIO 33         | Anodo (+)          | Indica sistema em espera                              |
 | **LED Vermelho**     | GPIO 32         | Anodo (+)          | Indica acesso negado                                  |
-| **Buzzer**           | GPIO 26         | Pino positivo      | Emite som para sinalização de acesso                  |
-| **Relé (Fechadura)** | GPIO 18         | Pino de controle   | Acionamento da fechadura elétrica                     |
-| **Sensor RFID**      | GPIO 23 (MOSI)  | MOSI               | Leitura de tags RFID (opcional)                       |
-|                      | GPIO 19 (MISO)  | MISO               |                                                      |
-|                      | GPIO 18 (SCK)   | SCK                |                                                      |
-|                      | GPIO 5 (SDA)    | SDA                |                                                      |
+| **Buzzer**           | GPIO 26         | Pino positivo (+)    | Emite som para sinalização de acesso                  |
+| **Relé (Fechadura)** | GPIO 18         | Pino de controle (IN)  | Acionamento da fechadura elétrica                     |
+
