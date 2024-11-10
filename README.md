@@ -1,6 +1,6 @@
 A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
 
-## Imagens do protótipo 
+### Imagens do protótipo 
 
 <div align="center">
   <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
@@ -26,7 +26,7 @@ A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é um
   <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-## Materiais utilizados para a primeira versão de protótipo 
+### Materiais utilizados para a primeira versão de protótipo 
 
 Para a construção deste primeiro protótipo, foram empregados diversos componentes, cada um selecionado para possibilitar o funcionamento adequado do sistema e permitir testes iniciais das funcionalidades. Esses materiais incluem sensores para captura de dados, atuadores para respostas do sistema e módulos de controle, todos conectados ao microcontrolador ESP32, que gerencia as operações do protótipo.
 
@@ -47,7 +47,7 @@ Para a construção deste primeiro protótipo, foram empregados diversos compone
 | Fechadura Elétrica    | Fechadura de 12V, ativada via relé               | 1          | Controlada pelo ESP32 através de um módulo relé para acionamento seguro |
 | Buzzer                | Buzzer piezoelétrico 5V                          | 1          | Emite alertas sonoros em resposta a eventos                    |
 
-## Conexões 
+### Conexões 
 
 Para garantir o funcionamento adequado do protótipo, foi necessário realizar as conexões de forma cuidadosa e organizada entre o microcontrolador ESP32 e os demais componentes. Abaixo, detalhamos as conexões de cada elemento utilizado no protótipo.
 
@@ -65,7 +65,7 @@ Para garantir o funcionamento adequado do protótipo, foi necessário realizar a
 
 A alimentação dos dispositivos foi distribuída a partir das portas de energia do ESP32 (GND e 5V), conectadas à protoboard para fornecer energia de forma organizada a todos os componentes do circuito.
 
-## Código para funcionamento do protótipo
+### Código para funcionamento do protótipo
 
 O código-fonte do protótipo foi desenvolvido para gerenciar os sensores, atuadores e o fluxo de dados entre os componentes conectados ao ESP32. Ele inclui funções para autenticação biométrica, controle de LEDs e relé, e feedback sonoro através do buzzer.
 
