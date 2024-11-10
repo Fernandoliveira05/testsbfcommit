@@ -63,3 +63,6 @@ Para garantir o funcionamento adequado do protótipo, foi necessário realizar a
 | **Buzzer**           | GPIO 26         | Pino positivo (+)    | Emite som para sinalização de acesso                  |
 | **Relé (Fechadura)** | GPIO 18         | Pino de controle (IN)  | Acionamento da fechadura elétrica                     |
 
+A alimentação dos dispositivos foi distribuída a partir das portas de energia do ESP32 (GND e 5V), conectadas à protoboard para fornecer energia de forma organizada a todos os componentes do circuito.
+
+
