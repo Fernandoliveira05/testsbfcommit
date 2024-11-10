@@ -124,3 +124,227 @@ int capturarIdDigital() {
   * Captura da imagem da digital.
   * Conversão da imagem para um template.
   * Pesquisa do template no banco de dados do sensor para encontrar um ID correspondente.
+
+
+
+#### 3. Exibição de Mensagens e Controle de Acesso
+Este bloco contém as funções exibirAcessoPermitido() e exibirAcessoNegado(), que exibem mensagens no LCD e acionam os LEDs e o buzzer conforme o resultado da verificação de digital. Elas são acionadas quando o acesso é permitido ou negado, proporcionando feedback visual e sonoro.
+
+```cpp
+void exibirAcessoPermitido() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Acesso Permitido");
+    tone(BUZZER_PIN, 1000, 200); // Emite tom curto no buzzer
+}
+
+void exibirAcessoNegado() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    tone(BUZZER_PIN, 500, 1000); // Emite tom longo no buzzer
+    lcd.print("Acesso negado");
+    delay(1000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Tente Novamente!");
+}
+```
+
+* Funções de Feedback:
+  * exibirAcessoPermitido(): Exibe uma mensagem de "Acesso Permitido" e emite um tom curto.
+  * exibirAcessoNegado(): Exibe uma mensagem de "Acesso Negado", emite um tom longo e pede para tentar novamente.
+
+
+#### 4. Controle dos LEDs
+As funções acenderLedVerde(), acenderLedVermelho(), gerenciarLedVerde() e gerenciarLedVermelho() controlam o tempo de ativação dos LEDs, permitindo que fiquem acesos apenas pelo tempo necessário.
+
+```cpp
+void acenderLedVerde() {
+    digitalWrite(LED_VERDE, HIGH);
+    digitalWrite(LED_AZUL, LOW);
+    ledVerdeAceso = true;
+    tempoLedVerde = millis(); // Marca o tempo atual para controle do tempo de acendimento
+}
+
+void acenderLedVermelho() {
+    digitalWrite(LED_VERMELHO, HIGH);
+    digitalWrite(LED_AZUL, LOW);
+    ledVermelhoAceso = true;
+    tempoLedVermelho = millis(); // Marca o tempo atual para controle do tempo de acendimento
+}
+
+void gerenciarLedVerde() {
+    if (ledVerdeAceso && millis() - tempoLedVerde >= duracaoLedVerde) {
+        digitalWrite(LED_VERDE, LOW);
+        ledVerdeAceso = false;
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Instituto");
+        lcd.setCursor(0, 1);
+        lcd.print("Apontar");
+        digitalWrite(LED_AZUL, HIGH); // Retorna ao estado de espera
+    }
+}
+
+void gerenciarLedVermelho() {
+    if (ledVermelhoAceso && millis() - tempoLedVermelho >= duracaoLedVermelho) {
+        digitalWrite(LED_VERMELHO, LOW);
+        ledVermelhoAceso = false;
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Instituto");
+        lcd.setCursor(0, 1);
+        lcd.print("Apontar");
+        digitalWrite(LED_AZUL, HIGH); // Retorna ao estado de espera
+    }
+}
+```
+
+
+Aqui está uma explicação detalhada dos principais trechos do código, organizada por funcionalidade. Essa estrutura facilita a compreensão de cada bloco e fornece contexto sobre o funcionamento geral do protótipo.
+
+Explicação dos Trechos do Código
+1. Inicialização dos Componentes
+Este trecho configura o LCD, o leitor biométrico, e os pinos dos LEDs, buzzer e relé. É a etapa de preparação, onde cada componente é iniciado e testado para garantir que está funcionando corretamente antes de o protótipo começar a operação.
+
+cpp
+Copiar código
+void setup() {
+    inicializarLCD();           // Configura o LCD para exibir mensagens de status
+    inicializarSerial();         // Inicializa a comunicação serial com o ESP32 e o leitor biométrico
+    configurarPinos();           // Define os pinos como saídas e inicializa seus estados
+    verificarLeitorBiometrico(); // Verifica se o leitor biométrico está funcionando corretamente
+}
+Funções chamadas:
+inicializarLCD(): Inicializa o display LCD e exibe uma mensagem de inicialização.
+inicializarSerial(): Configura a comunicação entre o ESP32 e o leitor biométrico.
+configurarPinos(): Define os pinos dos LEDs, relé, e buzzer como saídas.
+verificarLeitorBiometrico(): Verifica a conexão com o leitor biométrico e exibe o número de digitais registradas.
+2. Função para Captura e Identificação da Digital
+A função capturarIdDigital() realiza a leitura da digital presente no sensor e tenta convertê-la para um ID válido. Ela verifica se há uma digital no sensor, converte a imagem para um template, e busca um ID correspondente. Em caso de sucesso, retorna o ID; caso contrário, indica que a digital não foi reconhecida.
+
+cpp
+Copiar código
+int capturarIdDigital() {
+    uint8_t p = leitorBiometrico.getImage();
+    if (p == FINGERPRINT_NOFINGER) return -1; // Nenhuma digital detectada
+    else if (p != FINGERPRINT_OK) {
+        Serial.println("Erro ao capturar imagem");
+        return -1;
+    }
+
+    p = leitorBiometrico.image2Tz();
+    if (p != FINGERPRINT_OK) {
+        Serial.println("Erro ao converter imagem");
+        return -1;
+    }
+
+    p = leitorBiometrico.fingerFastSearch();
+    if (p == FINGERPRINT_OK) {
+        Serial.print("ID encontrado: ");
+        Serial.println(leitorBiometrico.fingerID);
+        return leitorBiometrico.fingerID; // Retorna o ID encontrado
+    } else {
+        Serial.println("Digital nao encontrada");
+        return -2; // Digital lida, mas sem correspondência
+    }
+}
+Processo:
+Captura da imagem da digital.
+Conversão da imagem para um template.
+Pesquisa do template no banco de dados do sensor para encontrar um ID correspondente.
+3. Exibição de Mensagens e Controle de Acesso
+Este bloco contém as funções exibirAcessoPermitido() e exibirAcessoNegado(), que exibem mensagens no LCD e acionam os LEDs e o buzzer conforme o resultado da verificação de digital. Elas são acionadas quando o acesso é permitido ou negado, proporcionando feedback visual e sonoro.
+
+cpp
+Copiar código
+void exibirAcessoPermitido() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Acesso Permitido");
+    tone(BUZZER_PIN, 1000, 200); // Emite tom curto no buzzer
+}
+
+void exibirAcessoNegado() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    tone(BUZZER_PIN, 500, 1000); // Emite tom longo no buzzer
+    lcd.print("Acesso negado");
+    delay(1000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Tente Novamente!");
+}
+Funções de Feedback:
+exibirAcessoPermitido(): Exibe uma mensagem de "Acesso Permitido" e emite um tom curto.
+exibirAcessoNegado(): Exibe uma mensagem de "Acesso Negado", emite um tom longo e pede para tentar novamente.
+4. Controle dos LEDs
+As funções acenderLedVerde(), acenderLedVermelho(), gerenciarLedVerde() e gerenciarLedVermelho() controlam o tempo de ativação dos LEDs, permitindo que fiquem acesos apenas pelo tempo necessário.
+
+cpp
+Copiar código
+void acenderLedVerde() {
+    digitalWrite(LED_VERDE, HIGH);
+    digitalWrite(LED_AZUL, LOW);
+    ledVerdeAceso = true;
+    tempoLedVerde = millis(); // Marca o tempo atual para controle do tempo de acendimento
+}
+
+void acenderLedVermelho() {
+    digitalWrite(LED_VERMELHO, HIGH);
+    digitalWrite(LED_AZUL, LOW);
+    ledVermelhoAceso = true;
+    tempoLedVermelho = millis(); // Marca o tempo atual para controle do tempo de acendimento
+}
+
+void gerenciarLedVerde() {
+    if (ledVerdeAceso && millis() - tempoLedVerde >= duracaoLedVerde) {
+        digitalWrite(LED_VERDE, LOW);
+        ledVerdeAceso = false;
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Instituto");
+        lcd.setCursor(0, 1);
+        lcd.print("Apontar");
+        digitalWrite(LED_AZUL, HIGH); // Retorna ao estado de espera
+    }
+}
+
+void gerenciarLedVermelho() {
+    if (ledVermelhoAceso && millis() - tempoLedVermelho >= duracaoLedVermelho) {
+        digitalWrite(LED_VERMELHO, LOW);
+        ledVermelhoAceso = false;
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Instituto");
+        lcd.setCursor(0, 1);
+        lcd.print("Apontar");
+        digitalWrite(LED_AZUL, HIGH); // Retorna ao estado de espera
+    }
+}
+
+* Funções:
+  * acenderLedVerde() e acenderLedVermelho(): Acendem os LEDs verde e vermelho, respectivamente, e registram o tempo em que foram ativados.
+  * gerenciarLedVerde() e gerenciarLedVermelho(): Apagam os LEDs após o tempo especificado, voltando o sistema ao estado de espera.
+
+
+ #### 5. Controle do Relé para Fechadura
+O relé controla o acionamento da fechadura elétrica e é ativado por um tempo específico após a verificação de uma digital válida.
+
+ ```cpp
+void ativarRele() {
+    digitalWrite(RELE_PIN, LOW); // Ativa a fechadura
+    releAtivo = true;
+    tempoAtivacaoRele = millis(); // Armazena o tempo de ativação
+}
+
+void desativarRele() {
+    if (releAtivo && millis() - tempoAtivacaoRele >= 5000) {
+        digitalWrite(RELE_PIN, HIGH); // Desativa a fechadura após 5 segundos
+        releAtivo = false;
+    }
+}
+ ```
+* Funções de Controle:
+  * ativarRele(): Liga o relé para acionar a fechadura e registra o tempo de ativação.
+  * desativarRele(): Desliga o relé após 5 segundos, garantindo que a fechadura não fique ativa por tempo indeterminado.
