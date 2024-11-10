@@ -83,20 +83,39 @@ void setup() {
 }
 ```
 
-#### 2. Inicialização dos Componentes
-Este bloco configura o ESP32 e os componentes conectados, como o LCD, leitor biométrico, LEDs, e buzzer. Essa etapa garante que todos os dispositivos estejam prontos para uso.
-
-```cpp
-void setup() {
-    inicializarLCD();
-    inicializarSerial();
-    configurarPinos();
-    verificarLeitorBiometrico();
-}
-```
-
 * Funções chamadas:
   * inicializarLCD(): Inicializa o display LCD e exibe uma mensagem de inicialização.
   * inicializarSerial(): Configura a comunicação entre o ESP32 e o leitor biométrico.
   * configurarPinos(): Define os pinos dos LEDs, relé, e buzzer como saídas.
   * verificarLeitorBiometrico(): Verifica a conexão com o leitor biométrico e exibe o número de digitais registradas.
+ 
+#### 2. Função para Captura e Identificação da Digital
+A função capturarIdDigital() realiza a leitura da digital presente no sensor e tenta convertê-la para um ID válido. Ela verifica se há uma digital no sensor, converte a imagem para um template, e busca um ID correspondente. Em caso de sucesso, retorna o ID; caso contrário, indica que a digital não foi reconhecida.
+
+```cpp
+int capturarIdDigital() {
+    uint8_t p = leitorBiometrico.getImage();
+    if (p == FINGERPRINT_NOFINGER) return -1; // Nenhuma digital detectada
+    else if (p != FINGERPRINT_OK) {
+        Serial.println("Erro ao capturar imagem");
+        return -1;
+    }
+
+    p = leitorBiometrico.image2Tz();
+    if (p != FINGERPRINT_OK) {
+        Serial.println("Erro ao converter imagem");
+        return -1;
+    }
+
+    p = leitorBiometrico.fingerFastSearch();
+    if (p == FINGERPRINT_OK) {
+        Serial.print("ID encontrado: ");
+        Serial.println(leitorBiometrico.fingerID);
+        return leitorBiometrico.fingerID; // Retorna o ID encontrado
+    } else {
+        Serial.println("Digital nao encontrada");
+        return -2; // Digital lida, mas sem correspondência
+    }
+}
+
+```
