@@ -1,4 +1,8 @@
-A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
+A proposta de solução IoT para o Instituto Apontar visa a criação de um sistema de controle de acesso seguro e eficiente, focado em melhorar a rotina e a segurança do ambiente. Este protótipo integra sensores biométricos, LEDs indicadores, buzzer e uma fechadura elétrica, todos coordenados pelo microcontrolador ESP32. O sistema permite autenticação por digital e cartão, com feedback sonoro e visual que garante uma experiência intuitiva e acessível para todos os usuários.
+
+Cada componente foi selecionado para atender diretamente aos requisitos discutidos com o Instituto, incluindo acessibilidade e confiabilidade na operação. O protótipo utiliza um display LCD para exibir mensagens de status, LEDs que sinalizam estados específicos (como “Acesso Permitido” ou “Acesso Negado”), e um relé que controla o acionamento da fechadura elétrica de forma segura. O código, desenvolvido com nomes descritivos e funções modularizadas, garantindo uma estrutura de fácil manutenção para futuras implementações.
+
+Essa primeira versão do protótipo físico demonstra o potencial da solução para otimizar a gestão de acesso no Instituto, contribuindo para um ambiente mais seguro, organizado e fácil de usar.
 
 ### Imagens do protótipo 
 
