@@ -1,4 +1,4 @@
-&nbsp;&nbsp;&nbsp;&nbsp; A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
+A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
 
 ## Imagens do protótipo 
 
@@ -28,7 +28,7 @@
 
 ## Materiais utilizados para a primeira versão de protótipo 
 
-&nbsp;&nbsp;&nbsp;&nbsp; Para a construção deste primeiro protótipo, foram empregados diversos componentes, cada um selecionado para possibilitar o funcionamento adequado do sistema e permitir testes iniciais das funcionalidades. Esses materiais incluem sensores para captura de dados, atuadores para respostas do sistema e módulos de controle, todos conectados ao microcontrolador ESP32, que gerencia as operações do protótipo.
+Para a construção deste primeiro protótipo, foram empregados diversos componentes, cada um selecionado para possibilitar o funcionamento adequado do sistema e permitir testes iniciais das funcionalidades. Esses materiais incluem sensores para captura de dados, atuadores para respostas do sistema e módulos de controle, todos conectados ao microcontrolador ESP32, que gerencia as operações do protótipo.
 
 | Material          | Especificação                              | Quantidade | Observações                                                    |
 |-------------------|--------------------------------------------|------------|-----------------------------------------------------------------|
