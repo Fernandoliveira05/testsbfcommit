@@ -119,3 +119,8 @@ int capturarIdDigital() {
 }
 
 ```
+
+* Processo:
+  * Captura da imagem da digital.
+  * Conversão da imagem para um template.
+  * Pesquisa do template no banco de dados do sensor para encontrar um ID correspondente.
