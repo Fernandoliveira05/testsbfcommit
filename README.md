@@ -82,3 +82,21 @@ void setup() {
     verificarLeitorBiometrico();
 }
 ```
+
+#### 2. Inicialização dos Componentes
+Este bloco configura o ESP32 e os componentes conectados, como o LCD, leitor biométrico, LEDs, e buzzer. Essa etapa garante que todos os dispositivos estejam prontos para uso.
+
+```cpp
+void setup() {
+    inicializarLCD();
+    inicializarSerial();
+    configurarPinos();
+    verificarLeitorBiometrico();
+}
+```
+
+* Funções chamadas:
+ ** inicializarLCD(): Inicializa o display LCD e exibe uma mensagem de inicialização.
+ **inicializarSerial(): Configura a comunicação entre o ESP32 e o leitor biométrico.
+ **configurarPinos(): Define os pinos dos LEDs, relé, e buzzer como saídas.
+ **verificarLeitorBiometrico(): Verifica a conexão com o leitor biométrico e exibe o número de digitais registradas.
