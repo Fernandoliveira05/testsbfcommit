@@ -1,8 +1,34 @@
+A proposta de solução IoT para otimizar o dia a dia do Instituto Apontar é uma estrutura completa e integrada, desenvolvida para atender as necessidades específicas do instituto. Esta solução reúne sensores, microcontroladores e atuadores, todos coordenados por um código bem documentado e intuitivo, para facilitar futuras manutenções. A primeira versão física do protótipo foi projetada para cumprir todos os requisitos definidos pelo Instituto, com atenção especial aos aspectos de acessibilidade discutidos anteriormente com o instituto. O objetivo é criar um sistema que não apenas agilize os processos, mas também ofereça segurança e facilidade de uso, proporcionando uma experiência mais eficiente e tranquila para todos no Instituto.
 
+## Imagens do protótipo 
+
+<div align="center">
+  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
+  <img src="../assets/storyboard1.png" width="600px" height="auto">
+  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
+  <img src="../assets/storyboard1.png" width="600px" height="auto">
+  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
+  <img src="../assets/storyboard1.png" width="600px" height="auto">
+  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
+  <img src="../assets/storyboard1.png" width="600px" height="auto">
+  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
 
 ## Materiais utilizados para a primeira versão de protótipo 
 
-&nbsp;&nbsp;&nbsp;&nbsp; Para a realização desse primeiro protótipo foram utilizados muitos
+&nbsp;&nbsp;&nbsp;&nbsp; Para a construção deste primeiro protótipo, foram empregados diversos componentes, cada um selecionado para possibilitar o funcionamento adequado do sistema e permitir testes iniciais das funcionalidades. Esses materiais incluem sensores para captura de dados, atuadores para respostas do sistema e módulos de controle, todos conectados ao microcontrolador ESP32, que gerencia as operações do protótipo.
 
 | Material          | Especificação                              | Quantidade | Observações                                                    |
 |-------------------|--------------------------------------------|------------|-----------------------------------------------------------------|
@@ -22,4 +48,22 @@
 | Buzzer                | Buzzer piezoelétrico 5V                          | 1          | Emite alertas sonoros em resposta a eventos                    |
 | Sensor RFID           | Leitor RFID MFRC522, interface SPI               | 1          | Permite autenticação por tags RFID para controle de acesso     |
 
+## Conexões 
 
+Para garantir o funcionamento adequado do protótipo, foi necessário realizar as conexões de forma cuidadosa e organizada entre o microcontrolador ESP32 e os demais componentes. Abaixo, detalhamos as conexões de cada elemento utilizado no protótipo.
+
+| Componente           | Pino no ESP32   | Pino no Componente | Função/Descrição                                      |
+|----------------------|-----------------|---------------------|-------------------------------------------------------|
+| **Leitor Biométrico**| GPIO 16 (RX)    | TX                 | Comunicação Serial para leitura de digitais           |
+|                      | GPIO 17 (TX)    | RX                 |                                                      |
+| **LCD I2C**          | GPIO 21 (SDA)   | SDA                | Exibe mensagens de status                             |
+|                      | GPIO 22 (SCL)   | SCL                | Endereço I2C padrão (0x27)                            |
+| **LED Verde**        | GPIO 25         | Anodo (+)          | Indica acesso autorizado                              |
+| **LED Azul**         | GPIO 33         | Anodo (+)          | Indica sistema em espera                              |
+| **LED Vermelho**     | GPIO 32         | Anodo (+)          | Indica acesso negado                                  |
+| **Buzzer**           | GPIO 26         | Pino positivo      | Emite som para sinalização de acesso                  |
+| **Relé (Fechadura)** | GPIO 18         | Pino de controle   | Acionamento da fechadura elétrica                     |
+| **Sensor RFID**      | GPIO 23 (MOSI)  | MOSI               | Leitura de tags RFID (opcional)                       |
+|                      | GPIO 19 (MISO)  | MISO               |                                                      |
+|                      | GPIO 18 (SCK)   | SCK                |                                                      |
+|                      | GPIO 5 (SDA)    | SDA                |                                                      |
