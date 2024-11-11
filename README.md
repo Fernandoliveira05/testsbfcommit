@@ -7,26 +7,8 @@ Essa primeira versão do protótipo físico demonstra o potencial da solução p
 ### Imagens do protótipo 
 
 <div align="center">
-  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
-  <img src="../assets/storyboard1.png" width="600px" height="auto">
-  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
-</div>
-
-<div align="center">
-  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
-  <img src="../assets/storyboard1.png" width="600px" height="auto">
-  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
-</div>
-
-<div align="center">
-  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
-  <img src="../assets/storyboard1.png" width="600px" height="auto">
-  <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
-</div>
-
-<div align="center">
-  <sub>Figura X - StoryBoard com Solução Implementada</sub><br>
-  <img src="../assets/storyboard1.png" width="600px" height="auto">
+  <sub>Figura X - Imagens Protótipo Inicial</sub><br>
+  <img src="prototipo_v1.0.gif" width="600px" height="auto">
   <br><sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
