@@ -155,9 +155,10 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 | **Resistores e Cabos**       | Componentes eletrônicos auxiliares.                                                         | Conexões elétricas e controle de tensão nos circuitos.                                                  | Variado        |
 | **Conexão Wi-Fi**            | Rede sem fio.                                                                                | Permite a comunicação do ESP32 com o broker MQTT e o servidor.                                          | 1 (infraestrutura) |
 | **Protoboard**            | Placa de prototipagem.                                                                                | Permite as ligações eletrônicas do circuito.                                          | 2  |
+| **Botões**                   | Emissor de som.                                                                              | Emite sons para indicar feedback, como falhas ou sucesso nas operações.                                 | 1              |
 
 
-### Relação de Conexões do Sistema com Portas do ESP32
+### Relação Atualizada de Conexões do Sistema com Portas do ESP32 (Incluindo Botões)
 
 | **Componente**                | **Porta(s) do ESP32** | **Descrição da Conexão**                                                                                |
 |--------------------------------|-----------------------|----------------------------------------------------------------------------------------------------------|
@@ -166,9 +167,10 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 | **LED RGB**                     | Vermelho: 25, Verde: 26, Azul: 27 | Conexão GPIO para controle de cores indicando sucesso, falha ou estados do sistema.                     |
 | **Buzzer**                      | Pino 14              | Conexão GPIO para emissão de sinais sonoros indicando erros ou ações realizadas.                        |
 | **Relé**                        | Pino 13              | Conexão GPIO para ativação/desativação do relé que controla a fechadura eletrônica.                      |
+| **Botão 1**                     | Pino 32              | Botão de **aceitação** (e.g., confirmações de acesso ou ações do sistema).                               |
+| **Botão 2**                     | Pino 33              | Botão de **recusa** (e.g., cancela ou nega ações do sistema).                                            |
 | **Conexão Wi-Fi**               | -                    | Configuração interna para comunicação do ESP32 com o broker MQTT e o servidor Flask via Wi-Fi.          |
 | **Fonte de Alimentação 5V**     | VIN e GND            | Alimentação de energia para o ESP32 e os periféricos conectados (sensor biométrico, LCD, LEDs, etc.).    |
-
 ---
 
 ### Esquema Detalhado de Conexões no ESP32
@@ -192,8 +194,10 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 - **Relé**
   - **Controle → Pino 13 do ESP32**
 
+- **Botões**
+  - **Botão 1 (Aceitação) → Pino 32 do ESP32**
+  - **Botão 2 (Recusa) → Pino 33 do ESP32**
+
 - **Fonte de Alimentação**
   - **VIN → Fonte 5V**
   - **GND → Terra**
-
-
