@@ -393,14 +393,14 @@ A abordagem adotada utiliza a biblioteca gspread, que permite manipular planilha
  
 ##### Implementação:
 
-cpp ```
-import gspread #Biblioteca para manipularmos o Google Sheets
-from google.oauth2.service_account import Credentials #Importando o uso das credenciais, sem elas não podemos manipular as planilhas
-import psycopg2 #Biblioteca para termos acesso ao PsotgreSql
-from psycopg2.extras import execute_values #Importando uma função da biblioteca para extrairmos os valores
-from time import sleep #Importando o sleep, que atua de forma semelhante ao delay no C
-import os #Sistema Operacional conexão com o Python
-import datetime #Biblioteca para conseguirmos manipular dados com valores de tempo presentes no banco de dados
+~~~
+import gspread  # Biblioteca para manipular o Google Sheets
+from google.oauth2.service_account import Credentials  # Importando o uso das credenciais, sem elas não podemos manipular as planilhas
+import psycopg2  # Biblioteca para termos acesso ao PostgreSQL
+from psycopg2.extras import execute_values  # Importando uma função da biblioteca para extrairmos os valores
+from time import sleep  # Importando o sleep, que atua de forma semelhante ao delay no C
+import os  # Sistema Operacional conexão com o Python
+import datetime  # Biblioteca para conseguirmos manipular dados com valores de tempo presentes no banco de dados
 
 # Configuração do Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -495,7 +495,8 @@ except Exception as e:
 finally:
     cursor.close()
     db.close()
-´´´
+
+~~~
 
 
 
