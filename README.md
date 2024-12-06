@@ -498,5 +498,10 @@ finally:
 
 ~~~
 
+##### Imagens:
 
-
+<div align="center">
+  <sub>Figura X - Tabela sendo atualizada em tempo real</sub><br>
+  <img src="Sheets_gif.gif" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
