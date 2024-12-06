@@ -512,4 +512,4 @@ finally:
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-Para acessar o código completo e explorar sua implementação, [clique aqui para ver o arquivo completo.](sheets/DBeaver.py)
+Para acessar o código completo e explorar sua implementação, [clique aqui para ver o arquivo completo.](Sheets/DBeaver.py)
