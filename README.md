@@ -505,3 +505,9 @@ finally:
   <img src="Sheets_gif.gif" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
+
+<div align="center">
+  <sub>Figura X - Tabela sendo atualizada em tempo real (Computador)</sub><br>
+  <img src="sheets_atualizado.gif" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
