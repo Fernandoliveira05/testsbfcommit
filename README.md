@@ -511,3 +511,5 @@ finally:
   <img src="sheets_atualizado.gif" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
+
+Para acessar o código completo e explorar sua implementação, [clique aqui para ver o arquivo completo.](sheets/DBeaver.py)
