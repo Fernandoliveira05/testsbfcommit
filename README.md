@@ -59,7 +59,7 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
 
 <div align="center">
   <sub>Figura X - Diagrama UML - Fluxo de Cadastro de Digital</sub><br>
-  <img src="image(1).png" width="600px" height="auto"><br>
+  <img src="image (1).png" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
