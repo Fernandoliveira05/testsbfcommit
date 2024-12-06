@@ -207,6 +207,8 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 
 Na versão atual do sistema, foram adicionados dois botões para melhorar o controle do dispositivo. O Botão 1 é responsável por ativar o modo de repouso, desativando temporariamente as operações do sistema. O dispositivo retorna ao estado ativo ao pressionar o botão novamente. Já o Botão 2 é utilizado para reiniciar o dispositivo, permitindo uma rápida recuperação em caso de necessidade de ajustes ou falhas. Ambos os botões estão conectados ao ESP32 e configurados para executar essas funções essenciais, garantindo maior eficiência e praticidade no uso do sistema. 
 
+##### Imagens
+
 <div align="center">
   <sub>Figura X - botões no circuito</sub><br>
   <img src="BOTÕES1.jpg" width="600px" height="auto"><br>
@@ -342,4 +344,29 @@ void setupWiFi() {
 
 ##### Imagens
 
+**Ponto de acesso**:
+Para nos conectarmos ao ESP32, utilizamos um ponto de acesso Wi-Fi criado pelo próprio microcontrolador. Esse ponto de acesso aparece como uma rede Wi-Fi convencional, com um SSID e uma senha configuráveis diretamente no código. Isso permite que dispositivos se conectem ao ESP32 de maneira simples e prática, facilitando a interação e configuração inicial.
 
+<div align="center">
+  <sub>Figura X - Ponto de Acesso</sub><br>
+  <img src="wifi_esp.jpg" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+**Entrar no modo wifi**:
+Ao se conectar à rede Wi-Fi criada pelo ESP32, o usuário será direcionado automaticamente para uma página HTML intuitiva. Nesta página, basta clicar em "Configure Wi-Fi" para acessar as opções de configuração da rede, onde é possível inserir as credenciais do Wi-Fi desejado de forma rápida e fácil.
+
+<div align="center">
+  <sub>Figura X - Ponto de Acesso</sub><br>
+  <img src="wifi_esp.jpg" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+**Configurar wifi**:
+Na página de configuração, o usuário deverá inserir o SSID da rede desejada e a respectiva senha. Após salvar essas informações, o ESP32 será configurado para se conectar automaticamente à rede especificada. Esse processo simplifica consideravelmente a configuração, eliminando a necessidade de conhecimento técnico avançado.
+
+<div align="center">
+  <sub>Figura X - Ponto de Acesso</sub><br>
+  <img src="wifi_esp.jpg" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
