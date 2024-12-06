@@ -305,4 +305,41 @@ void reiniciarEsp32() {
 
 #### Hotspot 
 
-O Hotspot no ESP32 é uma funcionalidade que permite ao dispositivo atuar como um ponto de acesso Wi-Fi. Nesse modo, o ESP32 cria sua própria rede Wi-Fi, permitindo que outros dispositivos se conectem diretamente a ele, sem necessidade de um roteador intermediário.
+O Hotspot no ESP32 é uma funcionalidade que permite ao dispositivo operar como um ponto de acesso Wi-Fi (Access Point - AP). Nesse modo, o ESP32 cria sua própria rede Wi-Fi, possibilitando que outros dispositivos se conectem diretamente a ele, sem a necessidade de um roteador intermediário.
+
+No contexto deste projeto, o hotspot é utilizado para simplificar a configuração de redes Wi-Fi. Com a ajuda da biblioteca WiFiManager, o ESP32 cria um ponto de acesso local que hospeda uma interface web. Por meio dessa interface, o usuário pode configurar as credenciais da rede Wi-Fi de maneira dinâmica e intuitiva, eliminando a necessidade de inserir essas informações diretamente no código.
+
+##### Implementação
+
+```cpp
+void setupWiFi() {
+  WiFi.mode(WIFI_AP_STA);  // Configura o ESP32 em modo Access Point + Station
+  WiFiManager wm;
+  lcd.setCursor(0, 0);
+  lcd.print("Conectando WiFi");
+
+  bool res;
+  res = wm.autoConnect("Apontados_ESP32", "Instituto"); // Ponto de acesso protegido por senha
+
+  if (!res) {
+    Serial.println("Captive portal falhou. Esperando 1 minuto antes de reiniciar.");
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Falha! Aguardando");
+    delay(60000);  // Aguarda 1 minuto
+    esp_sleep_enable_timer_wakeup(10 * 500000); // Timer para deep sleep
+    esp_deep_sleep_start();
+  } else {
+    Serial.println("Conectado...yeey :)");
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Conexão");
+    lcd.setCursor(0, 1);
+    lcd.print("Estabelecida!");
+  }
+}
+```
+
+##### Imagens
+
+
