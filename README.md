@@ -154,5 +154,46 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 | **Fonte de Alimentação 5V**  | Fonte de energia.                                                                            | Alimenta os componentes do sistema, como ESP32, LCD, sensor biométrico e LED.                           | 1              |
 | **Resistores e Cabos**       | Componentes eletrônicos auxiliares.                                                         | Conexões elétricas e controle de tensão nos circuitos.                                                  | Variado        |
 | **Conexão Wi-Fi**            | Rede sem fio.                                                                                | Permite a comunicação do ESP32 com o broker MQTT e o servidor.                                          | 1 (infraestrutura) |
+| **Protoboard**            | Placa de prototipagem.                                                                                | Permite as ligações eletrônicas do circuito.                                          | 2  |
+
+
+### Relação de Conexões do Sistema com Portas do ESP32
+
+| **Componente**                | **Porta(s) do ESP32** | **Descrição da Conexão**                                                                                |
+|--------------------------------|-----------------------|----------------------------------------------------------------------------------------------------------|
+| **Sensor Biométrico DY50**      | RX: 16, TX: 17       | Comunicação UART para envio de dados capturados pelo sensor biométrico para o ESP32.                    |
+| **LCD I2C**                     | SDA: 21, SCL: 22     | Comunicação I2C para exibição de mensagens como "Acesso Permitido" ou "Erro no Sistema".                |
+| **LED RGB**                     | Vermelho: 25, Verde: 26, Azul: 27 | Conexão GPIO para controle de cores indicando sucesso, falha ou estados do sistema.                     |
+| **Buzzer**                      | Pino 14              | Conexão GPIO para emissão de sinais sonoros indicando erros ou ações realizadas.                        |
+| **Relé**                        | Pino 13              | Conexão GPIO para ativação/desativação do relé que controla a fechadura eletrônica.                      |
+| **Conexão Wi-Fi**               | -                    | Configuração interna para comunicação do ESP32 com o broker MQTT e o servidor Flask via Wi-Fi.          |
+| **Fonte de Alimentação 5V**     | VIN e GND            | Alimentação de energia para o ESP32 e os periféricos conectados (sensor biométrico, LCD, LEDs, etc.).    |
+
+---
+
+### Esquema Detalhado de Conexões no ESP32
+
+- **Sensor Biométrico DY50**
+  - **RX do Sensor → Pino TX do ESP32 (17)**
+  - **TX do Sensor → Pino RX do ESP32 (16)**
+
+- **LCD I2C**
+  - **SDA → Pino 21 do ESP32**
+  - **SCL → Pino 22 do ESP32**
+
+- **LED RGB**
+  - **Vermelho → Pino 25 do ESP32**
+  - **Verde → Pino 26 do ESP32**
+  - **Azul → Pino 27 do ESP32**
+
+- **Buzzer**
+  - **Entrada Positiva → Pino 14 do ESP32**
+
+- **Relé**
+  - **Controle → Pino 13 do ESP32**
+
+- **Fonte de Alimentação**
+  - **VIN → Fonte 5V**
+  - **GND → Terra**
 
 
