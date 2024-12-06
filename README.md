@@ -24,6 +24,7 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
 | 04    | **Reconexão Automática após Perda de Wi-Fi**                                                          | O ESP32 deve estar conectado ao broker MQTT e configurado para tentar reconectar automaticamente em caso de falha de comunicação. | Reiniciar o sistema para simular perda de conexão Wi-Fi e tentar acessar o sistema.                              | O ESP32 exibe no LCD: **"Erro na Conexão"**, tenta reconectar a cada 5 segundos e, após o sucesso, retorna ao estado normal.          | O ESP32 detectou a perda de conexão, exibiu a mensagem de erro no LCD, tentou reconectar, e restabeleceu a comunicação com o broker MQTT após algumas tentativas.                       |
 | 05    | **Verificação de Duplicidade no Cadastro Biométrico**                                                 | O sensor biométrico do ESP32 deve estar configurado para verificar duplicidades no armazenamento local antes de enviar ao servidor. | Tentar cadastrar uma digital já registrada no sistema.                                                          | O ESP32 exibe no LCD: **"Dedo já cadastrado"** e interrompe o processo de cadastro.                                                  | A verificação local detectou duplicidade, exibindo corretamente a mensagem no LCD e encerrando o fluxo.                                                                              |
 | 06    | **Publicação de Alertas de Falha no Sistema**                                                         | O ESP32 deve estar configurado para capturar erros e publicar alertas no tópico MQTT apropriado.                  | Simular uma falha no sensor biométrico durante o processo de leitura da digital.                                 | O ESP32 publica no tópico **"instituto/erro/sistema"** indicando a falha.                                                            | A falha foi corretamente detectada e publicada no tópico MQTT.                                                                                                                        |
+| 07    | **Armazenamento de Registros no Banco de Dados** | O ESP32 deve estar configurado para enviar dados via MQTT ao servidor web, que está conectado ao banco de dados Render. O banco de dados deve estar ativo e acessível. | O ESP32 publica um registro (e.g., digital biométrica, ID ou status de acesso) para armazenamento no banco de dados. | O servidor web processa a solicitação e armazena os registros enviados pelo ESP32 no banco de dados Render. | O banco de dados registrou corretamente os dados recebidos. |
 
 
 ### **Configuração do Ambiente**
@@ -36,89 +37,72 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 - **Leitor RFID**: Identifica usuários por meio de cartões RFID.
 - **Relé**: Controla a abertura de fechaduras eletrônicas.
 - **LEDs**:
-  - Verde: Indica sucesso em autenticação ou cadastro.
-  - Vermelho: Indica falha na autenticação ou cadastro.
+  - Verde: Indica sucesso em autenticação.
+  - Vermelho: Indica falha na autenticação.
+  - Azul: Indica que o sistema está em plen o funcionamento.
 - **Buzzer**: Emite sinais sonoros como feedback adicional.
 - **Display LCD (I2C)**: Exibe mensagens em tempo real para o usuário, como "Acesso Permitido", "Acesso Negado" e "Erro no Cadastro".
 
 ### **Software**
-- **Conexão Wi-Fi**: Configurada para conectar o ESP32 ao broker MQTT.
+- **Conexão Wi-Fi**: Configurada para conectar o ESP32 ao broker MQTT (Deve ser configurada através do hotspot). 
 - **Broker MQTT (HiveMQ Cloud)**:
   - Centraliza a comunicação de eventos, registrando mensagens enviadas pelo protótipo.
   - Tópicos configurados:
-    - `instituto/cadastro/usuario`
-    - `instituto/cadastro/resposta`
-    - `instituto/acesso/biometrico`
-    - `instituto/remocao/biometrico`
+    - `instituto/cadastro`
+    - `instituto/acesso`
 - **Servidor Web (Flask)**:
   - Recebe os dados publicados pelo ESP32 via MQTT.
   - Processa e registra as informações no banco de dados.
 
+- **Banco de Dados (Render)**:
+- Recebe os registros do ESP32 e os armazena. 
 ---
 
-## **2. Fluxo de Cadastro de Impressão Digital**
+<div align="center">
+  <sub>Figura X - Diagrama UML - Fluxo de Cadastro de Digital</sub><br>
+  <img src="MUDA ESSA PORRA!" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
 
-### **Descrição do Cenário**
-O administrador realiza o cadastro de uma nova impressão digital no sistema. O sensor biométrico captura a digital, e o ESP32 verifica sua validade antes de enviá-la ao servidor para registro. O sistema fornece feedback visual e sonoro ao usuário.
 
-### **Exemplo de Ação do Usuário e Resposta do Sistema**
-
-| **Ação do Usuário**                          | **Resposta do Sistema**                                                                                  |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Usuário inicia o cadastro no ESP32.          | ESP32 exibe no LCD: **"Cadastrar:"**.                                                                    |
-| Usuário coloca o dedo no sensor.             | Sensor DY50 captura a digital e envia os dados ao ESP32.                                                 |
-| Digital já cadastrada.                       | ESP32 exibe no LCD: **"Dedo já cadastrado"**, encerra o fluxo.                                            |
-| Digital não cadastrada.                      | ESP32 publica no tópico MQTT: **"instituto/cadastro/usuario"** com o ID biométrico.                      |
-| Servidor processa e registra os dados.       | Banco de dados armazena a digital; servidor retorna sucesso no tópico: **"instituto/cadastro/resposta"**. |
-| Feedback final para o usuário.               | ESP32 exibe no LCD: **"Sucesso"**, LED verde acende e buzzer emite um som breve.                          |
-
-### **Diagrama de Sequência UML**
-
-![Diagrama de Sequência UML - Fluxo de Cadastro de Impressão Digital](./diagrama_cadastro_digital.png)
-
----
-
-## **3. Fluxo de Autenticação Biométrica**
-
-### **Descrição do Cenário**
-Um usuário autenticado utiliza o sistema para liberar acesso. O sensor biométrico verifica a digital e o ESP32 consulta a base de dados via servidor para confirmar a autenticação.
-
-### **Exemplo de Ação do Usuário e Resposta do Sistema**
-
-| **Ação do Usuário**                          | **Resposta do Sistema**                                                                                  |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Usuário coloca o dedo no sensor.             | Sensor DY50 captura a digital e envia os dados ao ESP32.                                                 |
-| Digital não encontrada no sistema.           | ESP32 exibe no LCD: **"Acesso Negado"**, acende o LED vermelho e o buzzer emite um som longo.             |
-| Digital encontrada e validada.               | ESP32 publica no tópico MQTT: **"instituto/acesso/biometrico"** e aguarda resposta do servidor.           |
-| Servidor confirma autenticação.              | Banco de dados valida o acesso e retorna sucesso no tópico: **"instituto/acesso/biometrico/resposta"**.   |
-| Feedback final para o usuário.               | ESP32 exibe no LCD: **"Acesso Permitido"**, LED verde acende e relé libera a fechadura.                   |
-
-### **Diagrama de Sequência UML**
-
-![Diagrama de Sequência UML - Fluxo de Autenticação Biométrica](./diagrama_autenticacao_biometrica.png)
+| **Nome do Teste**                          | **Configuração do Ambiente**                                                                                     | **Ação do Usuário**                                      | **Resposta Esperada do Sistema**                                                                                                     | **Resposta Recebida do Sistema**                                                                                                                                                      |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Teste 1: Acesso Negado**                 | O ESP32 deve estar conectado ao broker MQTT e com o banco de dados PostgreSQL acessível para verificar digitais. | Usuário coloca o dedo no sensor biométrico.             | O ESP32 exibe no LCD: **"Acesso Negado"**, acende o LED vermelho e o buzzer emite um som longo.                                       | O ESP32 exibiu no LCD: **"Acesso Negado"**, acendeu o LED vermelho e o buzzer emitiu um som longo.                                                                                    |
+| **Teste 2: Acesso Permitido**              | O ESP32 conectado ao broker MQTT, servidor web Flask ativo e banco PostgreSQL com a digital cadastrada.          | Usuário coloca o dedo no sensor biométrico.             | O ESP32 exibe no LCD: **"Acesso Permitido"**, LED verde acende, e o relé libera a fechadura.                                          | O ESP32 exibiu no LCD: **"Acesso Permitido"**, LED verde acendeu, e o relé ativou a fechadura corretamente.                                                                           |
+| **Teste 3: Banco de Dados Inacessível**    | O ESP32 conectado ao broker MQTT, mas o banco de dados PostgreSQL está offline.                                  | Usuário coloca o dedo no sensor biométrico.             | O ESP32 exibe no LCD: **"Erro no Sistema"**, acende o LED vermelho e o buzzer emite um som longo.                                     | O ESP32 exibiu no LCD: **"Erro no Sistema"**, acendeu o LED vermelho e o buzzer emitiu um som longo.                                                                                   |
+| **Teste 4: Reconexão Automática**          | O ESP32 perdeu a conexão com o broker MQTT e tenta reconectar automaticamente.                                   | Reiniciar o sistema para simular perda de conexão Wi-Fi. | O ESP32 exibe no LCD: **"Erro na Conexão"**, tenta reconectar a cada 5 segundos e, após sucesso, retorna ao estado normal.            | O ESP32 detectou a perda de conexão, exibiu no LCD: **"Erro na Conexão"**, tentou reconectar, e restabeleceu a comunicação com o broker MQTT após algumas tentativas.                    |
+| **Teste 5: Digital já Cadastrada**         | O ESP32 configurado com verificações locais e conexão ao broker MQTT.                                            | Tentar cadastrar uma digital já registrada no sistema.  | O ESP32 exibe no LCD: **"Dedo já cadastrado"** e interrompe o processo de cadastro.                                                  | O ESP32 exibiu corretamente no LCD: **"Dedo já cadastrado"** e encerrou o fluxo de cadastro.                                                                                           |
+| **Teste 6: Falha no Sensor Biométrico**    | O ESP32 conectado ao broker MQTT, mas o sensor biométrico não responde.                                          | Colocar o dedo no sensor biométrico.                    | O ESP32 publica no tópico **"instituto/erro/sistema"** indicando a falha e exibe no LCD: **"Erro no Sensor"**.                        | A falha foi corretamente detectada, o ESP32 publicou no tópico MQTT, e o LCD exibiu a mensagem: **"Erro no Sensor"**.                                                                 |
+| **Teste 7: Reconhecimento de Novo Usuário**| O ESP32 conectado ao broker MQTT, servidor ativo, e banco configurado para cadastro.                             | Usuário coloca o dedo no sensor para cadastro.          | O ESP32 publica a digital no tópico MQTT para o servidor, que insere o registro no banco de dados e retorna confirmação.              | O ESP32 enviou os dados ao servidor, o banco de dados confirmou o cadastro, e o LCD exibiu: **"Cadastro Concluído"**.                                                                 |
 
 ---
 
-## **4. Casos de Falha**
+#### Explicação dos Testes
 
-### **Cenário 1: Falha na Conexão Wi-Fi**
-| **Ação do Usuário**                          | **Resposta do Sistema**                                                                                  |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Usuário tenta realizar o cadastro ou acesso. | ESP32 tenta conectar ao broker MQTT, mas falha.                                                         |
-| Falha na conexão Wi-Fi.                      | ESP32 exibe no LCD: **"Erro na Conexão"**, e repete a tentativa a cada 5 segundos até reconectar.         |
+1. **Teste 1: Acesso Negado**
+   - **Cenário**: Digital não encontrada no banco de dados local.
+   - **Detalhe**: O sistema verifica localmente a digital e, se não encontrar, exibe uma mensagem negativa no LCD.
 
----
+2. **Teste 2: Acesso Permitido**
+   - **Cenário**: Digital encontrada e validada com sucesso.
+   - **Detalhe**: O ESP32 consulta o banco de dados via servidor, valida a digital e retorna feedback ao usuário.
 
-## **5. Testes e Validação**
+3. **Teste 3: Banco de Dados Inacessível**
+   - **Cenário**: O banco de dados não está acessível.
+   - **Detalhe**: O ESP32 detecta o erro e publica mensagens de falha no tópico MQTT.
 
-| **Situação de Teste**                        | **Critério de Sucesso**                                                                                  |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Cadastro de digital não duplicada.           | Digital é registrada no banco de dados, feedback no LCD exibe "Sucesso".                                 |
-| Cadastro de digital duplicada.               | ESP32 exibe no LCD: "Dedo já cadastrado" e encerra o fluxo.                                              |
-| Autenticação de digital válida.              | LED verde acende, relé libera a fechadura, e o LCD exibe "Acesso Permitido".                             |
-| Autenticação de digital inválida.            | LED vermelho acende, buzzer emite som longo, e o LCD exibe "Acesso Negado".                              |
-| Perda de conexão com o servidor.             | ESP32 tenta reconectar ao broker MQTT automaticamente e exibe "Erro na Conexão".                        |
+4. **Teste 4: Reconexão Automática**
+   - **Cenário**: Perda de conexão Wi-Fi.
+   - **Detalhe**: O ESP32 tenta reconectar ao broker MQTT automaticamente e retoma as operações normais.
 
----
+5. **Teste 5: Digital já Cadastrada**
+   - **Cenário**: Tentativa de cadastrar uma digital duplicada.
+   - **Detalhe**: O ESP32 realiza uma verificação local e impede o fluxo de cadastro.
 
+6. **Teste 6: Falha no Sensor Biométrico**
+   - **Cenário**: Sensor biométrico não responde corretamente.
+   - **Detalhe**: O sistema detecta a falha e publica alertas no broker MQTT.
 
+7. **Teste 7: Reconhecimento de Novo Usuário**
+   - **Cenário**: Cadastro de uma nova digital.
+   - **Detalhe**: O sistema publica os dados no broker, realiza o cadastro no banco e retorna sucesso ao usuário.
