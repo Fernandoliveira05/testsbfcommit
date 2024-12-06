@@ -209,19 +209,19 @@ Na versão atual do sistema, foram adicionados dois botões para melhorar o cont
 
 <div align="center">
   <sub>Figura X - botões no circuito</sub><br>
-  <img src="BOTÕES1.png" width="600px" height="auto"><br>
+  <img src="BOTÕES1.jpg" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
 <div align="center">
   <sub>Figura X - Botões no circuito (Vista de cima)</sub><br>
-  <img src="BOTÕES2.png" width="600px" height="auto"><br>
+  <img src="BOTÕES2.jpg" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
 <div align="center">
   <sub>Figura X - Botões no circuito (Aproximado)</sub><br>
-  <img src="BOTÕES3.png" width="600px" height="auto"><br>
+  <img src="BOTÕES3.jpg" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
