@@ -233,6 +233,41 @@ O modo de suspensão no ESP32 é um estado de baixo consumo de energia em que o 
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
+##### Implementação
+
+```cpp
+void desligarEsp32() {
+  int leitura = digitalRead(BUTTON);  // Leitura do estado do botão
+  if (leitura == LOW && millis() - ultimoTempoBotao > intervaloDebounce) {
+    // Botão pressionado após o intervalo de debounce
+    ultimoTempoBotao = millis();
+    Serial.println("Desligando ESP32...");
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Dispositivo em ");
+    lcd.setCursor(0, 1);
+    lcd.print("modo suspensao!");
+
+    // Aguarda a liberação do botão antes de configurar o deep sleep
+    while (digitalRead(BUTTON) == LOW) {
+      Serial.println("Aguardando liberação do botão...");
+      delay(50);
+    }
+
+    Serial.println("Botão liberado, entrando em modo de suspensão.");
+
+    // Configura GPIO25 como wake-up source
+    esp_sleep_enable_ext1_wakeup(GPIO_SEL_25, ESP_EXT1_WAKEUP_ALL_LOW);
+
+    // Adiciona um pequeno atraso para estabilização
+    delay(100);
+
+    // Entra no modo deep sleep
+    esp_deep_sleep_start();
+  }
+}
+```
+
 #### Modo de reinício:
 O modo de reinício no ESP32 é uma operação que interrompe todas as funções em execução e reinicia o microcontrolador, restabelecendo o estado inicial do sistema. Ele é útil para aplicar configurações atualizadas ou resolver falhas temporárias.
 <div align="center">
@@ -241,4 +276,33 @@ O modo de reinício no ESP32 é uma operação que interrompe todas as funções
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
+#### Implementação
 
+```cpp
+void reiniciarEsp32() {
+  int leituraR = digitalRead(BUTTON2);  // Leitura do estado do botão
+  if (leituraR == LOW && millis() - ultimoTempoBotao > intervaloDebounce) {
+    Serial.println("Reiniciando ESP32...");
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Reinicio em");
+    lcd.setCursor(0, 1);
+    lcd.print("breve!");
+
+    delay(100);
+
+    // Desabilita outras fontes de wake-up
+    esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_EXT1);
+
+    // Configura temporizador como única fonte de wake-up
+    esp_sleep_enable_timer_wakeup(10 * 500000); // Configuração para acordar após 5 segundos
+
+    // Entra no modo deep sleep
+    esp_deep_sleep_start();
+  }
+}
+```
+
+#### Hotspot 
+
+O Hotspot no ESP32 é uma funcionalidade que permite ao dispositivo atuar como um ponto de acesso Wi-Fi. Nesse modo, o ESP32 cria sua própria rede Wi-Fi, permitindo que outros dispositivos se conectem diretamente a ele, sem necessidade de um roteador intermediário.
