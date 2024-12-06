@@ -201,3 +201,40 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 - **Fonte de Alimentação**
   - **VIN → Fonte 5V**
   - **GND → Terra**
+ 
+
+#### Botões
+
+Na versão atual do sistema, foram adicionados dois botões para melhorar o controle do dispositivo. O Botão 1 é responsável por ativar o modo de repouso, desativando temporariamente as operações do sistema. O dispositivo retorna ao estado ativo ao pressionar o botão novamente. Já o Botão 2 é utilizado para reiniciar o dispositivo, permitindo uma rápida recuperação em caso de necessidade de ajustes ou falhas. Ambos os botões estão conectados ao ESP32 e configurados para executar essas funções essenciais, garantindo maior eficiência e praticidade no uso do sistema. 
+
+<div align="center">
+  <sub>Figura X - botões no circuito</sub><br>
+  <img src="BOTÕES1.png" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - Botões no circuito (Vista de cima)</sub><br>
+  <img src="BOTÕES2.png" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - Botões no circuito (Aproximado)</sub><br>
+  <img src="BOTÕES3.png" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - Modo de Suspensão</sub><br>
+  <img src="botes_susp.gif" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+<div align="center">
+  <sub>Figura X - Modo de Reinicio</sub><br>
+  <img src="botes_rei.gif" width="600px" height="auto"><br>
+  <sup>Fonte: Material produzido pelos autores (2024)</sup>
+</div>
+
+
