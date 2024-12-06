@@ -225,12 +225,16 @@ Na versão atual do sistema, foram adicionados dois botões para melhorar o cont
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
+#### Modo de suspensão:
+O modo de suspensão no ESP32 é um estado de baixo consumo de energia em que o dispositivo desativa componentes não essenciais, mantendo apenas os necessários para acordar o sistema, como GPIOs configurados ou temporizadores. É usado para economizar energia enquanto aguarda uma ação para retomar as operações normais. Em nosso projeto, ele pode ser ativado ao pressionar o Botão 1 (GPIO 25): 
 <div align="center">
   <sub>Figura X - Modo de Suspensão</sub><br>
   <img src="botes_susp.gif" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
+#### Modo de reinício:
+O modo de reinício no ESP32 é uma operação que interrompe todas as funções em execução e reinicia o microcontrolador, restabelecendo o estado inicial do sistema. Ele é útil para aplicar configurações atualizadas ou resolver falhas temporárias.
 <div align="center">
   <sub>Figura X - Modo de Reinicio</sub><br>
   <img src="botes_rei.gif" width="600px" height="auto"><br>
