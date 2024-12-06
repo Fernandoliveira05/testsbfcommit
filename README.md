@@ -358,7 +358,7 @@ Ao se conectar à rede Wi-Fi criada pelo ESP32, o usuário será direcionado aut
 
 <div align="center">
   <sub>Figura X - Ponto de Acesso</sub><br>
-  <img src="wifi_esp.jpg" width="600px" height="auto"><br>
+  <img src="page_wifi.jpg" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
@@ -367,6 +367,6 @@ Na página de configuração, o usuário deverá inserir o SSID da rede desejada
 
 <div align="center">
   <sub>Figura X - Ponto de Acesso</sub><br>
-  <img src="wifi_esp.jpg" width="600px" height="auto"><br>
+  <img src="ssid_esp.jpg" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
