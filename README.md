@@ -26,7 +26,7 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
 | 06    | **Publicação de Alertas de Falha no Sistema**                                                         | O ESP32 deve estar configurado para capturar erros e publicar alertas no tópico MQTT apropriado.                  | Simular uma falha no sensor biométrico durante o processo de leitura da digital.                                 | O ESP32 publica no tópico **"instituto/erro/sistema"** indicando a falha.                                                            | A falha foi corretamente detectada e publicada no tópico MQTT.                                                                                                                        |
 
 
-### Configuração do Ambiente**
+### **Configuração do Ambiente**
 
 Para realizar os testes descritos, o ambiente deve estar configurado da seguinte forma:
 
