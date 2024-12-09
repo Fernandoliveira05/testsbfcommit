@@ -8,13 +8,15 @@ Os Diagramas de Sequência UML cumprem um papel fundamental ao:
 
 Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da solução, conectando a experiência do usuário (UX) ao funcionamento técnico e operacional do sistema. A seguir, exploramos detalhadamente cada diagrama, explicando como ele reflete a arquitetura e os fluxos de trabalho do projeto.
 
+#### 3.4.4.2 **Registro de Situações de Uso**
+
 <div align="center">
   <sub>Figura X - Diagrama UML - Fluxo de Cadastro de Digital</sub><br>
   <img src="image.png" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-#### Registro de Situações de Uso
+#### 3.4.4.2.1 **UML de cadastro de usuário*
 
 | **#** | **Nome do Teste**                                                                                     | **Configuração do Ambiente**                                                                                     | **Ação do Usuário**                                                                                             | **Resposta Esperada do Sistema**                                                                                                     | **Resposta Recebida do Sistema**                                                                                                                                                      |
 |-------|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -56,6 +58,8 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
    - **Cenário**: O servidor armazena registros enviados pelo ESP32.
    - **Detalhe**: O ESP32 envia dados como digitais biométricas ou status de acesso ao servidor, que processa e registra corretamente no banco de dados Render.
 
+
+#### 3.4.4.2.2 **UML de cadastro de tentativa de acesso**
 
 <div align="center">
   <sub>Figura X - Diagrama UML - Fluxo de Cadastro de Digital</sub><br>
@@ -103,7 +107,7 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
 
 
 
-### **Configuração do Ambiente**
+#### 3.4.4.2.3 **Configuração do Ambiente**
 
 Para realizar os testes descritos, o ambiente deve estar configurado da seguinte forma:
 
@@ -135,9 +139,7 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 
 
 
-### Tabela de Componentes Utilizados
-
-### Tabela de Componentes Utilizados
+#### 3.4.4.2.4 **Tabela de Componentes Utilizados**
 
 | **Componente**              | **Descrição**                                                                                   | **Função no Sistema**                                                                                   | **Quantidade** |
 |------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|----------------|
@@ -158,7 +160,7 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 | **Botões**                   | Emissor de som.                                                                              | Emite sons para indicar feedback, como falhas ou sucesso nas operações.                                 | 1              |
 
 
-### Relação Atualizada de Conexões do Sistema com Portas do ESP32 (Incluindo Botões)
+#### 3.4.4.2.5 **Relação Atualizada de Conexões do Sistema com Portas do ESP32 (Incluindo Botões)**
 
 | **Componente**                | **Porta(s) do ESP32** | **Descrição da Conexão**                                                                                |
 |--------------------------------|-----------------------|----------------------------------------------------------------------------------------------------------|
@@ -173,7 +175,7 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 | **Fonte de Alimentação 5V**     | VIN e GND            | Alimentação de energia para o ESP32 e os periféricos conectados (sensor biométrico, LCD, LEDs, etc.).    |
 ---
 
-### Esquema Detalhado de Conexões no ESP32
+##### Esquema Detalhado de Conexões no ESP32
 
 - **Sensor Biométrico DY50**
   - **RX do Sensor → Pino TX do ESP32 (17)**
@@ -203,11 +205,11 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
   - **GND → Terra**
  
 
-#### Botões
+#### 3.4.4.3 **Botões**
 
 Na versão atual do sistema, foram adicionados dois botões para melhorar o controle do dispositivo. O Botão 1 é responsável por ativar o modo de repouso, desativando temporariamente as operações do sistema. O dispositivo retorna ao estado ativo ao pressionar o botão novamente. Já o Botão 2 é utilizado para reiniciar o dispositivo, permitindo uma rápida recuperação em caso de necessidade de ajustes ou falhas. Ambos os botões estão conectados ao ESP32 e configurados para executar essas funções essenciais, garantindo maior eficiência e praticidade no uso do sistema. 
 
-##### Imagens
+##### 3.4.4.3.1 **Imagens dos botões**
 
 <div align="center">
   <sub>Figura X - botões no circuito</sub><br>
@@ -227,7 +229,7 @@ Na versão atual do sistema, foram adicionados dois botões para melhorar o cont
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-#### Modo de suspensão:
+###### 3.4.4.3.2 **Modo de suspensão**
 O modo de suspensão no ESP32 é um estado de baixo consumo de energia em que o dispositivo desativa componentes não essenciais, mantendo apenas os necessários para acordar o sistema, como GPIOs configurados ou temporizadores. É usado para economizar energia enquanto aguarda uma ação para retomar as operações normais. Em nosso projeto, ele pode ser ativado ao pressionar o Botão 1 (GPIO 25): 
 <div align="center">
   <sub>Figura X - Modo de Suspensão</sub><br>
@@ -235,7 +237,7 @@ O modo de suspensão no ESP32 é um estado de baixo consumo de energia em que o 
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-##### Implementação
+###### 3.4.4.3.2.1 **Implementação**
 
 ```cpp
 void desligarEsp32() {
@@ -270,7 +272,7 @@ void desligarEsp32() {
 }
 ```
 
-#### Modo de reinício:
+###### 3.4.4.3.3 **Modo de reinício**
 O modo de reinício no ESP32 é uma operação que interrompe todas as funções em execução e reinicia o microcontrolador, restabelecendo o estado inicial do sistema. Ele é útil para aplicar configurações atualizadas ou resolver falhas temporárias.
 <div align="center">
   <sub>Figura X - Modo de Reinicio</sub><br>
@@ -278,7 +280,7 @@ O modo de reinício no ESP32 é uma operação que interrompe todas as funções
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-#### Implementação
+###### 3.4.4.3.3.1 **Implementação**
 
 ```cpp
 void reiniciarEsp32() {
@@ -305,13 +307,13 @@ void reiniciarEsp32() {
 }
 ```
 
-#### Hotspot 
+#### 3.4.4.3 **Hotspot** 
 
 O Hotspot no ESP32 é uma funcionalidade que permite ao dispositivo operar como um ponto de acesso Wi-Fi (Access Point - AP). Nesse modo, o ESP32 cria sua própria rede Wi-Fi, possibilitando que outros dispositivos se conectem diretamente a ele, sem a necessidade de um roteador intermediário.
 
 No contexto deste projeto, o hotspot é utilizado para simplificar a configuração de redes Wi-Fi. Com a ajuda da biblioteca WiFiManager, o ESP32 cria um ponto de acesso local que hospeda uma interface web. Por meio dessa interface, o usuário pode configurar as credenciais da rede Wi-Fi de maneira dinâmica e intuitiva, eliminando a necessidade de inserir essas informações diretamente no código.
 
-##### Implementação
+#### 3.4.4.3.1 **Implementação**
 
 ```cpp
 void setupWiFi() {
@@ -342,7 +344,7 @@ void setupWiFi() {
 }
 ```
 
-##### Imagens
+#### 3.4.4.3.2 **Imagens**
 
 **Ponto de acesso**:
 Para nos conectarmos ao ESP32, utilizamos um ponto de acesso Wi-Fi criado pelo próprio microcontrolador. Esse ponto de acesso aparece como uma rede Wi-Fi convencional, com um SSID e uma senha configuráveis diretamente no código. Isso permite que dispositivos se conectem ao ESP32 de maneira simples e prática, facilitando a interação e configuração inicial.
@@ -353,7 +355,7 @@ Para nos conectarmos ao ESP32, utilizamos um ponto de acesso Wi-Fi criado pelo p
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-**Entrar no modo wifi**:
+#### 3.4.4.3.3 **Entrar no modo wifi**
 Ao se conectar à rede Wi-Fi criada pelo ESP32, o usuário será direcionado automaticamente para uma página HTML intuitiva. Nesta página, basta clicar em "Configure Wi-Fi" para acessar as opções de configuração da rede, onde é possível inserir as credenciais do Wi-Fi desejado de forma rápida e fácil.
 
 <div align="center">
@@ -362,7 +364,7 @@ Ao se conectar à rede Wi-Fi criada pelo ESP32, o usuário será direcionado aut
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-**Configurar wifi**:
+#### 3.4.4.3.4 **Configurar wifi**
 Na página de configuração, o usuário deverá inserir o SSID da rede desejada e a respectiva senha. Após salvar essas informações, o ESP32 será configurado para se conectar automaticamente à rede especificada. Esse processo simplifica consideravelmente a configuração, eliminando a necessidade de conhecimento técnico avançado.
 
 <div align="center">
@@ -372,13 +374,13 @@ Na página de configuração, o usuário deverá inserir o SSID da rede desejada
 </div>
 
 
-#### Integração com o Google Sheets (Dashboard)
+#### 3.4.4.4 **Integração com o Google Sheets (Dashboard)** 
 A integração entre o ESP32, o banco de dados PostgreSQL e o Google Sheets transforma a experiência de visualização e compartilhamento de dados, trazendo praticidade e eficiência em tempo real. Essa funcionalidade permite criar um dashboard interativo diretamente em uma planilha, facilitando que gestores e usuários acompanhem acessos biométricos e outros eventos críticos de maneira dinâmica, acessível e intuitiva. Além de sua simplicidade e integração contínua, o Google Sheets foi priorizado pelo Instituto devido à sua familiaridade com os usuários.
 
 A abordagem adotada utiliza a biblioteca gspread, que permite manipular planilhas do Google via API, em conjunto com o banco de dados PostgreSQL para sincronização contínua de dados. Abaixo, detalhamos como isso funciona e como os componentes trabalham juntos para manter os dados atualizados.
 
 
-##### Arquitetura e Configuração do Ambiente
+#### 3.4.4.4.1 **Arquitetura e Configuração do Ambiente** 
 
 - Google Sheets:
  - Utiliza o serviço Google Sheets API para acessar e atualizar dados na planilha em tempo real.
@@ -391,7 +393,7 @@ A abordagem adotada utiliza a biblioteca gspread, que permite manipular planilha
 - Python Script:
   - Atua como um conector entre o banco de dados e o Google Sheets, verificando continuamente por novas linhas e sincronizando os dados.
  
-##### Implementação:
+#### 3.4.4.4.2 **Implementação** 
 
 ~~~
 import gspread  # Biblioteca para manipular o Google Sheets
@@ -498,7 +500,7 @@ finally:
 
 ~~~
 
-##### Imagens:
+#### 3.4.4.4.3 **Conclusão** 
 
 <div align="center">
   <sub>Figura X - Tabela sendo atualizada em tempo real</sub><br>
@@ -512,4 +514,13 @@ finally:
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
-Para acessar o código completo e explorar sua implementação, [clique aqui para ver o arquivo completo.](Sheets/DBeaver.py)
+#### 3.4.4.5 **Acesso ao código** 
+Para acessar os códigos aqui apresentados de forma completa e explorar suas implementações, acesse os seguintes links:
+[Clique aqui para ver o arquivo de integração do Google Sheets.](Sheets/DBeaver.py)
+[Clique aqui para ver o arquivo de integração do ESP32 (Hotspot, botões, atuadores e outras implementações).](Sheets/Arduino.ino)
+
+#### 3.4.4.6 **Conclusões** 
+  Nesta seção, apresentamos as interações detalhadas do sistema de controle de acesso e frequência do Instituto Apontar, destacando as ações do usuário, as respostas do sistema e os fluxos de sucesso e falha. Para isso, utilizamos diagramas de sequência UML que ilustram os fluxos principais, como autenticação biométrica, cadastro de digitais e notificações de falhas. Essas representações visuais foram fundamentais para validar a arquitetura do sistema, permitindo identificar e corrigir problemas de forma eficiente, além de demonstrar a comunicação e colaboração entre os diferentes componentes, como o ESP32, o broker MQTT, o banco de dados PostgreSQL e os dashboards integrados ao Google Sheets.
+  Os casos de uso abordam tanto cenários de sucesso quanto de falha, proporcionando uma visão completa do funcionamento do sistema. Em situações de sucesso, como a autenticação biométrica, o ESP32 valida a digital do usuário, acende o LED verde, exibe mensagens no LCD e libera a fechadura eletrônica via relé. Já em casos de falha, como perda de conexão Wi-Fi ou duplicidade de digitais, o sistema publica alertas no broker MQTT, exibe mensagens de erro no LCD e adota estratégias de recuperação, como reconexão automática ou interrupção do cadastro.
+  Os casos de falha analisados reforçam a confiabilidade do sistema, garantindo sua operação mesmo em situações adversas, como desconexão de Wi-Fi ou problemas nos sensores. Essas medidas demonstram o compromisso com a entrega de um produto funcional, seguro e útil. Essa seção conecta as funcionalidades técnicas às demandas reais do Instituto Apontar, alinhando inovação tecnológica à experiência do usuário, e garantindo a eficiência do controle de acesso e frequência.
+  
