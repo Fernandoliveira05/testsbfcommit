@@ -544,8 +544,8 @@ finally:
 
 
 #### 3.4.4.5 **Acesso ao código** 
-Para acessar os códigos aqui apresentados de forma completa e explorar suas implementações, acesse os seguintes links:
-[Clique aqui para ver o arquivo de integração do Google Sheets.](Sheets/DBeaver.py)
+Para acessar os códigos aqui apresentados de forma completa e explorar suas implementações, acesse os seguintes links:<br>
+[Clique aqui para ver o arquivo de integração do Google Sheets.](Sheets/DBeaver.py)<br>
 [Clique aqui para ver o arquivo de integração do ESP32 (Hotspot, botões, atuadores e outras implementações).](Sheets/Arduino.ino)
 
 
