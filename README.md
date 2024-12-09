@@ -16,6 +16,8 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
+
+
 #### 3.4.4.1.1 **UML de cadastro de usuário**
 
 | **#** | **Nome do Teste**                                                                                     | **Configuração do Ambiente**                                                                                     | **Ação do Usuário**                                                                                             | **Resposta Esperada do Sistema**                                                                                                     | **Resposta Recebida do Sistema**                                                                                                                                                      |
@@ -57,6 +59,9 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
 7. **Teste 7: Armazenamento de Registros no Banco de Dados**
    - **Cenário**: O servidor armazena registros enviados pelo ESP32.
    - **Detalhe**: O ESP32 envia dados como digitais biométricas ou status de acesso ao servidor, que processa e registra corretamente no banco de dados Render.
+
+
+
 
 
 #### 3.4.4.1.2 **UML de cadastro de tentativa de acesso**
@@ -107,6 +112,9 @@ Essa abordagem fornece aos desenvolvedores e gestores uma visão completa da sol
 
 
 
+
+
+
 #### 3.4.4.1.3 **Configuração do Ambiente**
 
 Para realizar os testes descritos, o ambiente deve estar configurado da seguinte forma:
@@ -136,6 +144,9 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
 - **Banco de Dados (Render)**:
 - Recebe os registros do ESP32 e os armazena. 
 ---
+
+
+
 
 
 
@@ -204,6 +215,9 @@ Para realizar os testes descritos, o ambiente deve estar configurado da seguinte
   - **VIN → Fonte 5V**
   - **GND → Terra**
  
+
+
+
 
 #### 3.4.4.2 **Botões**
 
@@ -307,6 +321,11 @@ void reiniciarEsp32() {
 }
 ```
 
+
+
+
+
+
 #### 3.4.4.3 **Hotspot** 
 
 O Hotspot no ESP32 é uma funcionalidade que permite ao dispositivo operar como um ponto de acesso Wi-Fi (Access Point - AP). Nesse modo, o ESP32 cria sua própria rede Wi-Fi, possibilitando que outros dispositivos se conectem diretamente a ele, sem a necessidade de um roteador intermediário.
@@ -372,6 +391,11 @@ Na página de configuração, o usuário deverá inserir o SSID da rede desejada
   <img src="ssid_esp.jpg" width="600px" height="auto"><br>
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
+
+
+
+
+
 
 
 #### 3.4.4.4 **Integração com o Google Sheets (Dashboard)** 
@@ -514,10 +538,21 @@ finally:
   <sup>Fonte: Material produzido pelos autores (2024)</sup>
 </div>
 
+
+
+
+
+
 #### 3.4.4.5 **Acesso ao código** 
 Para acessar os códigos aqui apresentados de forma completa e explorar suas implementações, acesse os seguintes links:
 [Clique aqui para ver o arquivo de integração do Google Sheets.](Sheets/DBeaver.py)
 [Clique aqui para ver o arquivo de integração do ESP32 (Hotspot, botões, atuadores e outras implementações).](Sheets/Arduino.ino)
+
+
+
+
+
+
 
 #### 3.4.4.6 **Conclusões** 
   Nesta seção, apresentamos as interações detalhadas do sistema de controle de acesso e frequência do Instituto Apontar, destacando as ações do usuário, as respostas do sistema e os fluxos de sucesso e falha. Para isso, utilizamos diagramas de sequência UML que ilustram os fluxos principais, como autenticação biométrica, cadastro de digitais e notificações de falhas. Essas representações visuais foram fundamentais para validar a arquitetura do sistema, permitindo identificar e corrigir problemas de forma eficiente, além de demonstrar a comunicação e colaboração entre os diferentes componentes, como o ESP32, o broker MQTT, o banco de dados PostgreSQL e os dashboards integrados ao Google Sheets.
